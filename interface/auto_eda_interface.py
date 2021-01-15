@@ -34,11 +34,10 @@ def variables_overview_interface(series,type_list):
     st.write()
     st.markdown("### Detail Information")
 
-    # var_stat1, var_stat2, var_dis = st.beta_columns(3)
-
     if var_stat["data_type"] == "Numeric":
-        var_stat1, var_stat2, var_his = st.beta_columns(3)
-        #Statistic 1
+        var_stat1, var_stat2 = st.beta_columns(2)
+
+        # Statistic 1
         var_stat1.write(f' Max      : {var_stat["detail_info"]["max"]}')
         var_stat1.write(f' 95%      : {var_stat["detail_info"]["95%"]}')      
         var_stat1.write(f' Q3       : {var_stat["detail_info"]["Q3"]}')
@@ -48,7 +47,7 @@ def variables_overview_interface(series,type_list):
         var_stat1.write(f' 5%       : {var_stat["detail_info"]["5%"]}')  
         var_stat1.write(f' Min      : {var_stat["detail_info"]["min"]}')
 
-#         #Statistic 2
+        # Statistic 2
         var_stat2.write(f' Range    : {var_stat["detail_info"]["range"]}')
         var_stat2.write(f' iqr      : {var_stat["detail_info"]["iqr"]}')      
         var_stat2.write(f' std      : {var_stat["detail_info"]["std"]}')
@@ -58,7 +57,7 @@ def variables_overview_interface(series,type_list):
         var_stat2.write(f' Sum      : {var_stat["detail_info"]["sum"]}')  
         var_stat2.write(f' cv       : {var_stat["detail_info"]["cv"] }')
 
-        # #Histogram
+        #Histogram
         # fig, ax = plt.subplots()
         # if var_stat["unique"] > 10 and peretage_unique > 0.1:
         #     ax.hist(series, bins=10)
@@ -139,7 +138,7 @@ def distribution_plot(data_distribution):
 def heatmap_data(dataframe, variables_name, type_list):
     valid_variables = []
     for i in range(len(type_list)):
-        if type_list[i] == "NUMERIC" or type_list[i] == "CATEGORICAL":
+        if type_list[i] == "Numeric" or type_list[i] == "Categorical":
             valid_variables.append(variables_name[i])
 
     corr_data = dataframe[valid_variables].corr()
